@@ -1,0 +1,20 @@
+{
+    "name": "juzaweb/multiple-storage",
+    "description": "",
+    "extra": {
+        "juzaweb": {
+            "name": "juzaweb/multiple-storage",
+            "domain": "jumu",
+            "cms_min": "3.4",
+            "version": "1.0",
+            "providers": [
+                "Juzaweb\\MultipleStorage\\Providers\\MultipleStorageServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Juzaweb\\MultipleStorage\\": "src/"
+        }
+    }
+}
