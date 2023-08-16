@@ -7,54 +7,28 @@ namespace Composer\Autoload;
 class ComposerStaticInit38a809c6519fe8e2b4c2744df95d6aa8
 {
     public static $files = array (
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
+        '9e2c61f3f7541f5e94b45d60d868f3e0' => __DIR__ . '/../..' . '/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'p' => 
-        array (
-            'phpseclib3\\' => 11,
-        ),
         'S' => 
         array (
             'Spatie\\FlysystemDropbox\\' => 24,
             'Spatie\\Dropbox\\' => 15,
         ),
-        'P' => 
-        array (
-            'Psr\\Http\\Message\\' => 17,
-            'Psr\\Http\\Client\\' => 16,
-            'ParagonIE\\ConstantTime\\' => 23,
-        ),
         'L' => 
         array (
             'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\PhpseclibV3\\' => 29,
-            'League\\Flysystem\\Local\\' => 23,
             'League\\Flysystem\\Ftp\\' => 21,
-            'League\\Flysystem\\' => 17,
         ),
         'J' => 
         array (
             'Juzaweb\\MultipleStorage\\' => 24,
         ),
-        'G' => 
-        array (
-            'GuzzleHttp\\Psr7\\' => 16,
-            'GuzzleHttp\\Promise\\' => 19,
-            'GuzzleHttp\\' => 11,
-            'GrahamCampbell\\GuzzleFactory\\' => 29,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'phpseclib3\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
-        ),
         'Spatie\\FlysystemDropbox\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/flysystem-dropbox/src',
@@ -62,19 +36,6 @@ class ComposerStaticInit38a809c6519fe8e2b4c2744df95d6aa8
         'Spatie\\Dropbox\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/dropbox-api/src',
-        ),
-        'Psr\\Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
-        ),
-        'Psr\\Http\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-client/src',
-        ),
-        'ParagonIE\\ConstantTime\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
         ),
         'League\\MimeTypeDetection\\' => 
         array (
@@ -84,37 +45,13 @@ class ComposerStaticInit38a809c6519fe8e2b4c2744df95d6aa8
         array (
             0 => __DIR__ . '/..' . '/league/flysystem-sftp-v3',
         ),
-        'League\\Flysystem\\Local\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/flysystem-local',
-        ),
         'League\\Flysystem\\Ftp\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem-ftp',
         ),
-        'League\\Flysystem\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/flysystem/src',
-        ),
         'Juzaweb\\MultipleStorage\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
-        ),
-        'GuzzleHttp\\Psr7\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'GuzzleHttp\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
-        ),
-        'GuzzleHttp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-        ),
-        'GrahamCampbell\\GuzzleFactory\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/graham-campbell/guzzle-factory/src',
         ),
     );
 
