@@ -4,7 +4,7 @@
     "extra": {
         "juzaweb": {
             "name": "juzaweb/multiple-storage",
-            "domain": "jumu",
+            "domain": "multi_storage",
             "cms_min": "3.4",
             "version": "1.0",
             "providers": [
@@ -15,6 +15,14 @@
     "autoload": {
         "psr-4": {
             "Juzaweb\\MultipleStorage\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "require": {
+        "league/flysystem-ftp": "^3.15",
+        "league/flysystem-sftp-v3": "^3.15",
+        "spatie/flysystem-dropbox": "^3.0"
     }
 }
