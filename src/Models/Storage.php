@@ -17,7 +17,6 @@ class Storage extends Model
     protected $fillable = [
         'name',
         'type',
-        'configs',
     ];
 
     protected $casts = [

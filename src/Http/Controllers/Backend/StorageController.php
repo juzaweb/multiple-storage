@@ -14,7 +14,6 @@ class StorageController extends PageController
 {
     use ResourceController {
         getDataForForm as DataForForm;
-        parseDataForSave as DataForSave;
     }
 
     protected string $viewPrefix = 'multi_storage::backend.storage';
@@ -31,11 +30,9 @@ class StorageController extends PageController
         return $data;
     }
 
-    protected function parseDataForSave(array $attributes, ...$params): array
+    protected function beforeSave(&$data, &$model, ...$params): void
     {
-        $attributes['configs'] = $attributes['configs'][$attributes['type']] ?? [];
-
-        return $attributes;
+        $model->configs = array_merge($model->configs, $data['configs'][$data['type']] ?? []);
     }
 
     protected function validator(array $attributes, ...$params): ValidatorContract

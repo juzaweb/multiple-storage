@@ -16,6 +16,7 @@
                     [
                         'label' => trans('multi_storage::content.type'),
                         'required' => true,
+                        'readonly' => $model->id,
                         'options' => [
                             '' => '--- Select ---',
                             'google_drive' => trans('multi_storage::content.google_drive'),

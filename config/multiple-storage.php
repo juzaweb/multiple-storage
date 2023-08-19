@@ -18,7 +18,7 @@ return [
                     'label' => 'Site key',
                 ],
                 'secret_key' => [
-                    'type' => 'text',
+                    'type' => 'security',
                     'label' => 'Secret key',
                 ]
             ]
