@@ -2,9 +2,9 @@
 
 namespace Juzaweb\MultipleStorage\Providers;
 
-use Juzaweb\CMS\Support\ServiceProvider;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
+use Juzaweb\CMS\Support\ServiceProvider;
 use Juzaweb\MultipleStorage\Actions\ResouceAction;
 use Juzaweb\MultipleStorage\Repositories\StorageRepository;
 use Juzaweb\MultipleStorage\Repositories\StorageRepositoryEloquent;
@@ -47,7 +47,7 @@ class MultipleStorageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/multiple-storage.php', 'multiple-storage');
+        $this->mergeConfigFrom(__DIR__.'/../../config/multiple-storage.php', 'multiple-storage');
     }
 
     /**

@@ -38,7 +38,8 @@
                 }}
 
                 @foreach($storages as $storageKey => $storage)
-                    <div id="form-{{ $storageKey }}" class="@if($model->type != $storageKey) box-hidden @endif form-configs">
+                    <div id="form-{{ $storageKey }}"
+                         class="@if($model->type != $storageKey) box-hidden @endif form-configs">
                         @foreach($storage['configs'] as $key => $config)
                             @php $config['name'] = "configs[{$storageKey}][{$key}]" @endphp
                             @php $config['data']['value'] = $model->configs[$key] ?? null @endphp

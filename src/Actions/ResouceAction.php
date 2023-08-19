@@ -11,7 +11,6 @@
 namespace Juzaweb\MultipleStorage\Actions;
 
 use Juzaweb\CMS\Abstracts\Action;
-use Juzaweb\MultipleStorage\Http\Controllers\Backend\StorageController;
 
 class ResouceAction extends Action
 {
