@@ -10,3 +10,7 @@
 | contains the "admin" middleware group. Now create something great!
 |
 */
+
+use Juzaweb\MultipleStorage\Http\Controllers\Backend\StorageController;
+
+Route::jwResource('storages', StorageController::class);
