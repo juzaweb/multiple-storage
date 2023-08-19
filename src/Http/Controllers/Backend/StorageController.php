@@ -32,7 +32,7 @@ class StorageController extends PageController
 
     protected function beforeSave(&$data, &$model, ...$params): void
     {
-        $model->configs = array_merge($model->configs, $data['configs'][$data['type']] ?? []);
+        $model->configs = array_merge($model->configs ?? [], $data['configs'][$data['type']] ?? []);
     }
 
     protected function validator(array $attributes, ...$params): ValidatorContract

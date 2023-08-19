@@ -26,9 +26,7 @@ class StorageDatatable extends DataTable
             ],
             'type' => [
                 'label' => trans('multi_storage::content.type'),
-            ],
-            'configs' => [
-                'label' => trans('multi_storage::content.configs'),
+                'width' => '15%',
             ],
             'created_at' => [
                 'label' => trans('cms::app.created_at'),
