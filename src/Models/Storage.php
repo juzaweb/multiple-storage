@@ -21,5 +21,6 @@ class Storage extends Model
 
     protected $casts = [
         'configs' => 'array',
+        'total_size' => 'integer',
     ];
 }

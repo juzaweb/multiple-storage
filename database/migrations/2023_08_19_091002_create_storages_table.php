@@ -19,6 +19,7 @@ return new class extends Migration {
                 $table->string('name');
                 $table->string('type', 50);
                 $table->json('configs')->nullable();
+                $table->bigInteger('total_size')->default(0)->comment('KB');
                 $table->timestamps();
                 $table->index('created_at');
                 $table->index('updated_at');

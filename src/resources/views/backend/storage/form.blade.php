@@ -10,6 +10,19 @@
 
                 {{ Field::text($model, 'name', ['label' => trans('multi_storage::content.name'), 'required' => true]) }}
 
+                {{ Field::text(
+                            $model,
+                            'total_size',
+                              [
+                                  'label' => trans('multi_storage::content.total_size'),
+                                  'required' => true,
+                                  'type' => 'number',
+                                  'prefix' => 'MB',
+                                  'value' => $model->total_size / 1024,
+                              ]
+                        )
+                        }}
+
                 {{ Field::select(
                     $model,
                     'type',

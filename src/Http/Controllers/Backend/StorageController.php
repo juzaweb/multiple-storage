@@ -3,6 +3,7 @@
 namespace Juzaweb\MultipleStorage\Http\Controllers\Backend;
 
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Juzaweb\Backend\Http\Controllers\Backend\PageController;
 use Juzaweb\CMS\Abstracts\DataTable;
@@ -32,6 +33,7 @@ class StorageController extends PageController
 
     protected function beforeSave(&$data, &$model, ...$params): void
     {
+        $model->total_size = Arr::get($data, 'total_size', 0) * 1024;
         $model->configs = array_merge($model->configs ?? [], $data['configs'][$data['type']] ?? []);
     }
 
