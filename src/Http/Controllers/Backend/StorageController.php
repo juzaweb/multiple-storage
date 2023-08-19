@@ -42,7 +42,10 @@ class StorageController extends PageController
         return Validator::make(
             $attributes,
             [
-                // Rules
+                'name' => ['required'],
+                'type' => ['required'],
+                'total_size' => ['required', 'integer', 'min:1'],
+                'configs.*' => ['required', 'array'],
             ]
         );
     }
