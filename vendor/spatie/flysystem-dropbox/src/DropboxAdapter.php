@@ -3,7 +3,6 @@
 namespace Spatie\FlysystemDropbox;
 
 use Generator;
-use League\Flysystem\ChecksumProvider;
 use League\Flysystem\Config;
 use League\Flysystem\DirectoryAttributes;
 use League\Flysystem\FileAttributes;
@@ -15,7 +14,6 @@ use League\Flysystem\UnableToCreateDirectory;
 use League\Flysystem\UnableToDeleteDirectory;
 use League\Flysystem\UnableToDeleteFile;
 use League\Flysystem\UnableToMoveFile;
-use League\Flysystem\UnableToProvideChecksum;
 use League\Flysystem\UnableToReadFile;
 use League\Flysystem\UnableToRetrieveMetadata;
 use League\Flysystem\UnableToSetVisibility;
@@ -25,7 +23,7 @@ use League\MimeTypeDetection\MimeTypeDetector;
 use Spatie\Dropbox\Client;
 use Spatie\Dropbox\Exceptions\BadRequest;
 
-class DropboxAdapter implements FilesystemAdapter, ChecksumProvider
+class DropboxAdapter implements FilesystemAdapter
 {
     protected Client $client;
 

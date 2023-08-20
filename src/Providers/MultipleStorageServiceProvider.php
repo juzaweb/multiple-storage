@@ -2,15 +2,13 @@
 
 namespace Juzaweb\MultipleStorage\Providers;
 
-use Illuminate\Filesystem\FilesystemAdapter;
-use Illuminate\Support\Facades\Storage;
 use Juzaweb\CMS\Support\ServiceProvider;
 use Juzaweb\MultipleStorage\Actions\ResouceAction;
 use Juzaweb\MultipleStorage\Repositories\StorageRepository;
 use Juzaweb\MultipleStorage\Repositories\StorageRepositoryEloquent;
-use League\Flysystem\Filesystem;
-use Spatie\Dropbox\Client as DropboxClient;
-use Spatie\FlysystemDropbox\DropboxAdapter;
+use Juzaweb\MultipleStorage\Support\Creater\GoogleDriveFilesystemCreater;
+use Juzaweb\MultipleStorage\Support\StorageManager;
+use Juzaweb\MultipleStorage\Contracts\StorageManager as StorageManagerContract;
 
 class MultipleStorageServiceProvider extends ServiceProvider
 {
@@ -22,22 +20,52 @@ class MultipleStorageServiceProvider extends ServiceProvider
     {
         $this->registerHookActions([ResouceAction::class]);
 
-        Storage::extend(
-            'dropbox',
-            function ($app, $config) {
-                $adapter = new DropboxAdapter(
-                    new DropboxClient(
-                        $config['authorization_token']
-                    )
-                );
-
-                return new FilesystemAdapter(
-                    new Filesystem($adapter, $config),
-                    $adapter,
-                    $config
-                );
-            }
+        $this->app[StorageManagerContract::class]->registerStorage(
+            'google_drive',
+            [
+                'name' => 'Google Drive',
+                'creater' => GoogleDriveFilesystemCreater::class,
+                'configs' => [
+                    // 'client_id' => [
+                    //     'type' => 'text',
+                    //     'label' => 'Client ID',
+                    // ],
+                    // 'client_secret' => [
+                    //     'type' => 'security',
+                    //     'label' => 'Client Secret',
+                    // ],
+                    // 'refresh_token' => [
+                    //     'type' => 'security',
+                    //     'label' => 'Refresh Token',
+                    // ],
+                    'credentials_file' => [
+                        'type' => 'upload_url',
+                        'label' => 'Credentials File',
+                    ],
+                    'folder_id' => [
+                        'type' => 'text',
+                        'label' => 'Folder ID',
+                    ]
+                ]
+            ]
         );
+
+        // Storage::extend(
+        //     'dropbox',
+        //     function ($app, $config) {
+        //         $adapter = new DropboxAdapter(
+        //             new DropboxClient(
+        //                 $config['authorization_token']
+        //             )
+        //         );
+        //
+        //         return new FilesystemAdapter(
+        //             new Filesystem($adapter, $config),
+        //             $adapter,
+        //             $config
+        //         );
+        //     }
+        // );
     }
 
     /**
@@ -48,6 +76,8 @@ class MultipleStorageServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/multiple-storage.php', 'multiple-storage');
+
+        $this->app->singleton(StorageManagerContract::class, StorageManager::class);
     }
 
     /**
@@ -55,8 +85,8 @@ class MultipleStorageServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
-        return [StorageRepository::class];
+        return [StorageRepository::class, StorageManagerContract::class];
     }
 }

@@ -8,6 +8,11 @@
  * @license    GNU V2
  */
 
-return [
-    //
-];
+namespace Juzaweb\MultipleStorage\Contracts;
+
+use Illuminate\Support\Collection;
+
+interface StorageManager
+{
+    public function all(bool $collection = true): Collection|array;
+}

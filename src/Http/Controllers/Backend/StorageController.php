@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Juzaweb\Backend\Http\Controllers\Backend\PageController;
 use Juzaweb\CMS\Abstracts\DataTable;
 use Juzaweb\CMS\Traits\ResourceController;
+use Juzaweb\MultipleStorage\Contracts\StorageManager;
 use Juzaweb\MultipleStorage\Http\Datatables\StorageDatatable;
 use Juzaweb\MultipleStorage\Models\Storage;
 
@@ -19,6 +20,10 @@ class StorageController extends PageController
 
     protected string $viewPrefix = 'multi_storage::backend.storage';
 
+    public function __construct(protected StorageManager $storageManager)
+    {
+    }
+
     protected function getDataTable(...$params): DataTable
     {
         return new StorageDatatable();
@@ -27,7 +32,7 @@ class StorageController extends PageController
     public function getDataForForm($model, ...$params): array
     {
         $data = $this->DataForForm($model, ...$params);
-        $data['storages'] = config("multiple-storage.storages");
+        $data['storages'] = $this->storageManager->all();
         return $data;
     }
 

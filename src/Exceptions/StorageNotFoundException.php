@@ -8,6 +8,8 @@
  * @license    GNU V2
  */
 
-return [
-    //
-];
+namespace Juzaweb\MultipleStorage\Exceptions;
+
+class StorageNotFoundException extends \Exception
+{
+}
