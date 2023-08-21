@@ -16,7 +16,7 @@ use Illuminate\Contracts\Filesystem\Filesystem as FilesystemContract;
 use Illuminate\Support\Arr;
 use Juzaweb\CMS\Contracts\Media\Media;
 use Juzaweb\MultipleStorage\Interfaces\FilesystemCreaterInterface;
-use Juzaweb\MultipleStorage\Support\Adapters\GoogleDriveAdapter2;
+use Juzaweb\MultipleStorage\Support\Adapters\GoogleDriveAdapter;
 use Illuminate\Filesystem\FilesystemAdapter;
 use League\Flysystem\Filesystem;
 
@@ -39,7 +39,7 @@ class GoogleDriveFilesystemCreater implements FilesystemCreaterInterface
         $client->setScopes('https://www.googleapis.com/auth/drive');
         $service = new Drive($client);
 
-        $adapter = new GoogleDriveAdapter2($service, $config['folder_id'], []);
+        $adapter = new GoogleDriveAdapter($service, $config['folder_id'], []);
 
         return new FilesystemAdapter(
             new Filesystem($adapter, $config),

@@ -11,6 +11,7 @@
 namespace Juzaweb\MultipleStorage\Support;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Juzaweb\CMS\Contracts\Media\Disk;
 use Juzaweb\CMS\Contracts\Media\Media;
 use Juzaweb\MultipleStorage\Contracts\StorageManager as StorageManagerContract;
@@ -20,7 +21,7 @@ use Juzaweb\MultipleStorage\Support\Disk as DiskSupport;
 
 class StorageManager implements StorageManagerContract
 {
-    protected array $storages = [];
+    protected static array $storages = [];
 
     public function __construct(protected Media $media)
     {
@@ -29,7 +30,7 @@ class StorageManager implements StorageManagerContract
 
     public function registerStorage(string $key, array $args = []): void
     {
-        $this->storages[$key] = [
+        self::$storages[$key] = [
             'name' => $args['name'],
             'creater' => $args['creater'],
             'configs' => $args['configs'],
@@ -39,15 +40,15 @@ class StorageManager implements StorageManagerContract
     public function all(bool $collection = true): Collection|array
     {
         if ($collection) {
-            return collect($this->storages);
+            return collect(self::$storages);
         }
 
-        return $this->storages;
+        return self::$storages;
     }
 
     public function get(string $key): ?array
     {
-        return $this->storages[$key] ?? null;
+        return self::$storages[$key] ?? null;
     }
 
     public function random(): Disk
@@ -68,7 +69,16 @@ class StorageManager implements StorageManagerContract
         return $this->createFileSystem($storage);
     }
 
-    protected function createFileSystem(Storage $storage): Disk
+    public function createFileSystemByName(string $storage): ?Disk
+    {
+        $id = Str::after($storage, 'mtt_');
+
+        $storage = Storage::find($id);
+
+        return $storage ? $this->createFileSystem($storage) : null;
+    }
+
+    public function createFileSystem(Storage $storage): Disk
     {
         $filesystem = app()->make($this->get($storage->type)['creater'])->create($storage->configs);
 
