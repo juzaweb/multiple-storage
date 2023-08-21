@@ -40,7 +40,7 @@ class StorageController extends PageController
 
     protected function beforeSave(&$data, &$model, ...$params): void
     {
-        $model->total_size = Arr::get($data, 'total_size', 0) * 1024;
+        $model->total_size = Arr::get($data, 'total_size', 0) * 1024 * 1024;
         $model->active = filter_var(Arr::get($data, 'active', false), FILTER_VALIDATE_BOOLEAN);
         $model->configs = array_merge($model->configs ?? [], $data['configs'][$data['type']] ?? []);
     }

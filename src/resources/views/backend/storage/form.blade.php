@@ -18,7 +18,7 @@
                                   'required' => true,
                                   'type' => 'number',
                                   'prefix' => 'MB',
-                                  'value' => $model->total_size / 1024,
+                                  'value' => $model->total_size / 1024 / 1024,
                               ]
                         )
                         }}
