@@ -314,7 +314,6 @@ class GoogleDriveAdapter implements FilesystemAdapter
     public function __construct($service, $root = null, $options = [])
     {
         $this->service = $service;
-
         $this->options = array_replace_recursive(static::$defaultOptions, $options);
 
         $this->spaces = $this->options['spaces'];
@@ -363,6 +362,17 @@ class GoogleDriveAdapter implements FilesystemAdapter
                 $this->clearCache();
             }
         }
+    }
+
+    public function setRootId(string $rootId): static
+    {
+        $this->rootId = $rootId;
+
+        $this->root = $rootId;
+
+        $this->clearCache();
+
+        return $this;
     }
 
     /**

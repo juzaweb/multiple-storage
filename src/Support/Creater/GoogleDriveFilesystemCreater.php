@@ -39,7 +39,7 @@ class GoogleDriveFilesystemCreater implements FilesystemCreaterInterface
         $client->setScopes('https://www.googleapis.com/auth/drive');
         $service = new Drive($client);
 
-        $adapter = new GoogleDriveAdapter($service, $config['folder_id'], []);
+        $adapter = (new GoogleDriveAdapter($service, null, []))->setRootId($config['folder_id']);
 
         return new FilesystemAdapter(
             new Filesystem($adapter, $config),
