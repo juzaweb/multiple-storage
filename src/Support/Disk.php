@@ -26,11 +26,11 @@ class Disk extends DiskMedia
         return $this;
     }
 
-    public function upload(string $source, string $name): FileInterface
+    public function upload(string $path, string $name, array $options = []): FileInterface
     {
-        $file = parent::upload($source, $name);
+        $file = parent::upload($path, $name, $options);
 
-        $this->storage->increment('used_size', File::size($source));
+        $this->storage->increment('used_size', File::size($path));
 
         return $file;
     }
