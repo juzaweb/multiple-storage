@@ -16,6 +16,7 @@ use Juzaweb\CMS\Contracts\Media\Media;
 use Juzaweb\MultipleStorage\Contracts\StorageManager as StorageManagerContract;
 use Juzaweb\MultipleStorage\Exceptions\StorageNotFoundException;
 use Juzaweb\MultipleStorage\Models\Storage;
+use Juzaweb\MultipleStorage\Support\Disk as DiskSupport;
 
 class StorageManager implements StorageManagerContract
 {
@@ -71,9 +72,11 @@ class StorageManager implements StorageManagerContract
     {
         $filesystem = app()->make($this->get($storage->type)['creater'])->create($storage->configs);
 
-        return $this->media->createFromFilesystem(
+        return (new DiskSupport(
             "mtt_{$storage->id}",
-            $filesystem
-        );
+            $this->media->getFactory(),
+        ))
+            ->setFileSystem($filesystem)
+            ->setStorage($storage);
     }
 }

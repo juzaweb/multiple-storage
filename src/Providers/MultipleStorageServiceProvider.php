@@ -41,6 +41,9 @@ class MultipleStorageServiceProvider extends ServiceProvider
                     'credentials_file' => [
                         'type' => 'upload_url',
                         'label' => 'Credentials File',
+                        'data' => [
+                            'disk' => 'protected',
+                        ]
                     ],
                     'folder_id' => [
                         'type' => 'text',

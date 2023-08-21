@@ -14,6 +14,7 @@ use Google\Client;
 use Google\Service\Drive;
 use Illuminate\Contracts\Filesystem\Filesystem as FilesystemContract;
 use Illuminate\Support\Arr;
+use Juzaweb\CMS\Contracts\Media\Media;
 use Juzaweb\MultipleStorage\Interfaces\FilesystemCreaterInterface;
 use Juzaweb\MultipleStorage\Support\Adapters\GoogleDriveAdapter;
 use Illuminate\Filesystem\FilesystemAdapter;
@@ -21,13 +22,20 @@ use League\Flysystem\Filesystem;
 
 class GoogleDriveFilesystemCreater implements FilesystemCreaterInterface
 {
+    public function __construct(protected Media $media)
+    {
+        //
+    }
+
     public function create(array $config): FilesystemContract
     {
         $client = new Client();
         // $client->setClientId($config['clientId']);
         // $client->setClientSecret($config['clientSecret']);
         // $client->refreshToken($config['refreshToken']);
-        $client->setAuthConfig(base_path(Arr::get($config, 'credentials_file')));
+        $credential = $this->media->protected()->fullPath(Arr::get($config, 'credentials_file'));
+
+        $client->setAuthConfig($credential);
         $client->setScopes('https://www.googleapis.com/auth/drive');
         $service = new Drive($client);
 

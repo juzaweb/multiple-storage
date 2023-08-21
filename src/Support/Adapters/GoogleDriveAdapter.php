@@ -713,22 +713,6 @@ class GoogleDriveAdapter implements FilesystemAdapter
     }
 
     /**
-     * Has child directory
-     *
-     * @param  string  $path
-     *            itemId path
-     *
-     * @return array
-     */
-    public function hasDir($path): array|bool
-    {
-        $meta = $this->getMetadata($path);
-        return ($meta && isset($meta['hasdir'])) ? $meta : [
-            'hasdir' => true
-        ];
-    }
-
-    /**
      * Do cache cacheHasDirs
      *
      * @param  array  $targets
@@ -1217,10 +1201,10 @@ class GoogleDriveAdapter implements FilesystemAdapter
      */
     protected function uploadResourceToGoogleDrive(
         $resource,
-        $parentId,
-        $fileName,
-        $srcDriveFile,
-        $mime
+        string $parentId,
+        string $fileName,
+        ?string $srcDriveFile,
+        ?string $mime
     ): DriveFile|bool {
         $chunkSizeBytes = $this->detectChunkSizeBytes();
         $fileSize = $this->getFileSizeBytes($resource);
@@ -1237,7 +1221,7 @@ class GoogleDriveAdapter implements FilesystemAdapter
         }
 
         $client = $this->service->getClient();
-        // Call the API with the media upload, defer so it doesn't immediately return.
+        // Call the API with the media upload, defer, so it doesn't immediately return.
         $client->setDefer(true);
 
         if (!$mime) {
@@ -1280,18 +1264,28 @@ class GoogleDriveAdapter implements FilesystemAdapter
      * @param  string  $contents
      * @param  string  $parentId
      * @param  string  $fileName
-     * @param  string  $mime
+     * @param  string|null  $srcDriveFile
+     * @param  string|null  $mime
      * @return DriveFile
      */
-    protected function ensureDriveFileExists($contents, $parentId, $fileName, $srcDriveFile, $mime): DriveFile
-    {
+    protected function ensureDriveFileExists(
+        string $contents,
+        string $parentId,
+        string $fileName,
+        ?string $srcDriveFile = null,
+        ?string $mime = null
+    ): DriveFile {
         if (!$mime) {
             $mime = MimeTypes::getDefault()->guessMimeType($contents);
         }
 
-        $driveFile = new DriveFile();
+        if (!$this->directoryExists($parentId)) {
+            $this->createDirectory($parentId, new Config(['parent_id' => null]));
+        }
 
+        $driveFile = new DriveFile();
         $mode = 'update';
+
         if (!$srcDriveFile) {
             $mode = 'insert';
             $driveFile->setName($fileName);
@@ -1299,7 +1293,6 @@ class GoogleDriveAdapter implements FilesystemAdapter
         }
 
         $driveFile->setMimeType($mime);
-
         $params = ['fields' => $this->fetchfieldsGet];
 
         if ($contents) {
@@ -1509,7 +1502,8 @@ class GoogleDriveAdapter implements FilesystemAdapter
 
     public function directoryExists(string $path): bool
     {
-        // TODO: Implement directoryExists() method.
+        $meta = $this->getMetadata($path);
+        return $meta && isset($meta['hasdir']);
     }
 
     public function deleteDirectory(string $path): void
