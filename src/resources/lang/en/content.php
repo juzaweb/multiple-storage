@@ -8,4 +8,6 @@ return [
     'storages' => 'Storages',
     'google_drive' => 'Google drive',
     'total_size' => 'Total size',
+    'filesystem' => 'Filesystem',
+    'active' => 'Active',
 ];

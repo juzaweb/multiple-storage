@@ -6,7 +6,7 @@
     ])
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
 
                 {{ Field::text($model, 'name', ['label' => trans('multi_storage::content.name'), 'required' => true]) }}
 
@@ -27,13 +27,10 @@
                     $model,
                     'type',
                     [
-                        'label' => trans('multi_storage::content.type'),
+                        'label' => trans('multi_storage::content.filesystem'),
                         'required' => true,
                         'readonly' => $model->id,
-                        'options' => [
-                            '' => '--- Select ---',
-                            'google_drive' => trans('multi_storage::content.google_drive'),
-                        ]
+                        'options' => $storagesOptions
                     ])
                 }}
 
@@ -47,6 +44,10 @@
                         @endforeach
                     </div>
                 @endforeach
+            </div>
+
+            <div class="col-md-4">
+                {{ Field::checkbox($model, 'active', ['label' => trans('multi_storage::content.active'), 'checked' => $model->active]) }}
             </div>
         </div>
 

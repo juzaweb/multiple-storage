@@ -33,12 +33,15 @@ class StorageController extends PageController
     {
         $data = $this->DataForForm($model, ...$params);
         $data['storages'] = $this->storageManager->all();
+        $data['storagesOptions'] = ['' => '-----'];
+        $data['storagesOptions'] += collect($data['storages'])->map(fn ($item) => $item['name'])->toArray();
         return $data;
     }
 
     protected function beforeSave(&$data, &$model, ...$params): void
     {
         $model->total_size = Arr::get($data, 'total_size', 0) * 1024;
+        $model->active = filter_var(Arr::get($data, 'active', false), FILTER_VALIDATE_BOOLEAN);
         $model->configs = array_merge($model->configs ?? [], $data['configs'][$data['type']] ?? []);
     }
 

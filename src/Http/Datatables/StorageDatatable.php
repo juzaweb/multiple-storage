@@ -27,6 +27,16 @@ class StorageDatatable extends DataTable
             'type' => [
                 'label' => trans('multi_storage::content.type'),
                 'width' => '15%',
+                'align' => 'center',
+            ],
+            'active' => [
+                'label' => trans('multi_storage::content.active'),
+                'width' => '15%',
+                'align' => 'center',
+                'formatter' => function ($value, $row, $index) {
+                    return $row->active ? '<i class="fa fa-check text-success"></i>'
+                        : '<i class="fa fa-times text-danger"></i>';
+                }
             ],
             'created_at' => [
                 'label' => trans('cms::app.created_at'),

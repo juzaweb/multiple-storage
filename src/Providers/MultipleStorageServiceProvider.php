@@ -7,6 +7,7 @@ use Juzaweb\MultipleStorage\Actions\ResouceAction;
 use Juzaweb\MultipleStorage\Repositories\StorageRepository;
 use Juzaweb\MultipleStorage\Repositories\StorageRepositoryEloquent;
 use Juzaweb\MultipleStorage\Support\Creater\GoogleDriveFilesystemCreater;
+use Juzaweb\MultipleStorage\Support\Creater\LocalFilesystemCreater;
 use Juzaweb\MultipleStorage\Support\StorageManager;
 use Juzaweb\MultipleStorage\Contracts\StorageManager as StorageManagerContract;
 
@@ -19,6 +20,20 @@ class MultipleStorageServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerHookActions([ResouceAction::class]);
+
+        $this->app[StorageManagerContract::class]->registerStorage(
+            'local',
+            [
+                'name' => 'Local',
+                'creater' => LocalFilesystemCreater::class,
+                'configs' => [
+                    'path' => [
+                        'type' => 'text',
+                        'label' => 'Local Path',
+                    ]
+                ]
+            ]
+        );
 
         $this->app[StorageManagerContract::class]->registerStorage(
             'google_drive',
