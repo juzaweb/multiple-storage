@@ -60,9 +60,9 @@ class MultipleStorageServiceProvider extends ServiceProvider
                             'disk' => 'protected',
                         ]
                     ],
-                    'folder_id' => [
+                    'folder' => [
                         'type' => 'text',
-                        'label' => 'Folder ID',
+                        'label' => 'Folder',
                     ]
                 ]
             ]

@@ -6,7 +6,9 @@
             "name": "juzaweb/multiple-storage",
             "domain": "multi_storage",
             "cms_min": "3.4",
-            "version": "1.0",
+            "version": "1.0"
+        },
+        "laravel": {
             "providers": [
                 "Juzaweb\\MultipleStorage\\Providers\\MultipleStorageServiceProvider"
             ]
@@ -24,16 +26,5 @@
         "league/flysystem-ftp": "^3.15",
         "league/flysystem-sftp-v3": "^3.15",
         "spatie/flysystem-dropbox": "^3.0"
-    },
-    "replace": {
-        "psr/http-message": "*",
-        "guzzlehttp/guzzle": "*",
-        "guzzlehttp/promises": "*",
-        "guzzlehttp/psr7": "*",
-        "league/flysystem": "*",
-        "phpseclib/phpseclib": "*",
-        "paragonie/random_compat": "*",
-        "paragonie/constant_time_encoding": "*",
-        "graham-campbell/guzzle-factory": "*"
     }
 }
