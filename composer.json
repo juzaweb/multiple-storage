@@ -29,6 +29,6 @@
         "spatie/flysystem-dropbox": "^3.0"
     },
     "require-dev": {
-        "juzaweb/modules": "^1.1"
+        "juzaweb/modules": "^1.0"
     }
 }

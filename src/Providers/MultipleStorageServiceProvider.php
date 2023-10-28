@@ -86,23 +86,15 @@ class MultipleStorageServiceProvider extends ServiceProvider
         // );
     }
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/multiple-storage.php', 'multiple-storage');
+
+        $this->app->register(EventServiceProvider::class);
 
         $this->app->singleton(StorageManagerContract::class, StorageManager::class);
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
     public function provides(): array
     {
         return [StorageRepository::class, StorageManagerContract::class];
