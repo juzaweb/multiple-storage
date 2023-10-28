@@ -12,6 +12,7 @@ namespace Juzaweb\MultipleStorage\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Juzaweb\Backend\Events\UploadFileSuccess;
 use Juzaweb\CMS\Contracts\Media\Disk;
 use Juzaweb\MultipleStorage\Contracts\StorageManager;
@@ -39,7 +40,10 @@ class UploadToStorageOnUploadFileSuccess implements ShouldQueue
 
         DB::transaction(
             function () use ($storage, $event) {
-                $storage->upload($event->file->path, $event->file->path);
+                $storage->upload(
+                    Storage::disk($event->file->disk)->path($event->file->path),
+                    $event->file->path
+                );
 
                 $event->file->deleteFile();
 
