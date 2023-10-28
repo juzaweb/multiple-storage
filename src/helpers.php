@@ -7,5 +7,3 @@
  * @link       https://juzaweb.com
  * @license    GNU V2
  */
-
-require __DIR__.'/../vendor/autoload.php';

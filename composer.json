@@ -1,12 +1,13 @@
 {
     "name": "juzaweb/multiple-storage",
-    "description": "",
+    "type": "juzaweb-plugin",
+    "license": "MIT",
+    "description": "Multiple storage support for juzaweb",
     "extra": {
         "juzaweb": {
-            "name": "juzaweb/multiple-storage",
+            "name": "Multiple storage for juzaweb",
             "domain": "multi_storage",
-            "cms_min": "3.4",
-            "version": "1.0"
+            "cms_min": "3.4"
         },
         "laravel": {
             "providers": [
@@ -26,5 +27,8 @@
         "league/flysystem-ftp": "^3.15",
         "league/flysystem-sftp-v3": "^3.15",
         "spatie/flysystem-dropbox": "^3.0"
+    },
+    "require-dev": {
+        "juzaweb/modules": "^1.1"
     }
 }
