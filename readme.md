@@ -9,3 +9,9 @@ composer require juzaweb/multiple-storage
 ```
 
 - Active pluign in `youdomain.com/admin-cp/plugins`
+
+## Supported systems
+
+[Google Drive](https://github.com/juzaweb/multiple-storage/blob/master/src/Support/Creater/GoogleDriveFilesystemCreater.php)
+
+[Local (path)](https://github.com/juzaweb/multiple-storage/blob/master/src/Support/Creater/LocalFilesystemCreater.php)
