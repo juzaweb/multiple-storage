@@ -35,8 +35,8 @@ class Disk extends DiskMedia
         return $file;
     }
 
-    public function freeSpage(): int
+    public function freeSpace(): int
     {
-        return $this->storage->free_size * 1024;
+        return $this->storage->free_size;
     }
 }

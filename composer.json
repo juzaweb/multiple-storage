@@ -7,9 +7,7 @@
         "juzaweb": {
             "name": "Multiple storage for juzaweb",
             "domain": "multi_storage",
-            "cms_min": "3.4"
-        },
-        "laravel": {
+            "cms_min": "3.4",
             "providers": [
                 "Juzaweb\\MultipleStorage\\Providers\\MultipleStorageServiceProvider"
             ]
