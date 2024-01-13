@@ -16,7 +16,7 @@ class ResouceAction extends Action
 {
     public function handle(): void
     {
-        $this->addAction(Action::BACKEND_INIT, [$this, 'registerResource']);
+        $this->addAction(Action::BACKEND_INIT, [$this, 'registerResources']);
         $this->addAction(Action::BACKEND_INIT, [$this, 'registerConfigs']);
     }
 
@@ -71,7 +71,7 @@ class ResouceAction extends Action
         );
     }
 
-    public function registerResource(): void
+    public function registerResources(): void
     {
         $this->hookAction->addAdminMenu(
             trans('Storages'),

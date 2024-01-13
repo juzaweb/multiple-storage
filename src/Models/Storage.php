@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Juzaweb\CMS\Models\Model;
 use Juzaweb\CMS\Traits\ResourceModel;
 use Juzaweb\CMS\Traits\UUIDPrimaryKey;
+use Juzaweb\Network\Traits\Networkable;
 
 /**
  * Juzaweb\MultipleStorage\Models\Storage
@@ -36,7 +37,7 @@ use Juzaweb\CMS\Traits\UUIDPrimaryKey;
  */
 class Storage extends Model
 {
-    use UUIDPrimaryKey, ResourceModel;
+    use UUIDPrimaryKey, ResourceModel, Networkable;
 
     protected $keyType = 'string';
 
